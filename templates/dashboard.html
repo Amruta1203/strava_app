@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strava Dashboard</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h2 {
+    text-align: center;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+table th {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Graph Section */
+img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+</head>
+<body>
+    <h1>Your Strava Activities</h1>
+    <table border="1">
+        <tr>
+            <th>Activity Name</th>
+            <th>Distance (m)</th>
+            <th>Duration (s)</th>
+            <th>Calories</th>
+        </tr>
+        {% for activity in activities %}
+        <tr>
+            <td>{{ activity['name'] }}</td>
+            <td>{{ activity['distance'] }}</td>
+            <td>{{ activity['moving_time'] }}</td>
+            <td>{{ activity.get('calories', 'N/A') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div>
+        <h3>Distance Graph</h3>
+        <img src="/graph" alt="Graph of Activity Distances">
+    </div>
+</body>
+</html>
